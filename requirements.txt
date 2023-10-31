@@ -1,4 +1,4 @@
-﻿absl-py==1.2.0
+absl-py==1.2.0
 altair==4.2.2
 anyio==3.6.2
 argon2-cffi==21.3.0
@@ -122,6 +122,7 @@ pytweening==1.0.4
 pytz==2022.4
 pytz-deprecation-shim==0.1.0.post0
 pywhatkit==5.4
+pywin32==304
 pywinpty==2.0.10
 PyYAML==6.0
 pyzmq==24.0.1
