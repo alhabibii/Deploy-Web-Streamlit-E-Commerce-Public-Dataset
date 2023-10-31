@@ -324,6 +324,8 @@ elif selected_question == "RFM Analysis":
     st.header("Distribusi Pelanggan dan Segmentasi Loyalitas Pelanggan")
     # Membuat grafik Pertanyaan 5
     df_segt_sorted = df_segt.sort_values(by='Customer Counts', ascending=True)
+    segment = df_segt_sorted['Segment']
+    customer_counts = df_segt_sorted['Customer Counts']
     fig5d, ax5d = plt.subplots(figsize=(15, 6))
     bars5d = ax5d.barh(segment, customer_counts, color='skyblue')
     ax5d.set_title('Customer Counts By RFM Segmentation')
