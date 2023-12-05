@@ -1,8 +1,8 @@
-from tkinter import font
+#from tkinter import font
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from pandas._libs.tslibs.timestamps import Timestamp
+#from pandas._libs.tslibs.timestamps import Timestamp
 
 
 # Kode Anda untuk mengambil data dan memprosesnya
