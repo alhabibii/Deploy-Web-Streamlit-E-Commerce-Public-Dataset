@@ -454,12 +454,13 @@ elif selected_question == "RFM Analysis":
     # Membuat grafik Pertanyaan 5
     high_risk_segments = ['Hibernating', 'About To Sleep', 'At Risk', 'Need Attention']
     colors = ['red' if seg in high_risk_segments else 'green' for seg in segment]
-    fig, ax = plt.subplots(figsize=(15, 6))
+    fig6c, ax6c = plt.subplots(figsize=(15, 8))
     bars = plt.barh(segment, customer_counts, color=colors)
 
-    plt.title('Customer Counts By RFM Segmentation')
-    plt.xlabel('Customer Counts')
-    plt.xticks([])
+    ax6c.set_title('Customer Counts By RFM Segmentation', fontdict={'fontsize': 20})
+    ax6c.set_xlabel('Customer Counts', fontdict={'fontsize': 16})
+    ax6c.set_yticklabels(segment, fontsize=14)
+    ax6c.set_xticks([])
     plt.gca().spines['top'].set_visible(False)
     plt.gca().spines['right'].set_visible(False)
     plt.gca().spines['bottom'].set_visible(False)
@@ -467,10 +468,10 @@ elif selected_question == "RFM Analysis":
 
     for bar in bars:
         width = bar.get_width()
-        plt.text(width, bar.get_y() + bar.get_height() / 2, f'{int(width)}', va='center', fontsize=10)
+        plt.text(width, bar.get_y() + bar.get_height() / 2, f'{int(width)}', va='center', fontsize=14)
 
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig6c)
 
 # Menampilkan grafik penjualan berdasarkan tanggal yang dipilih
 # ...
@@ -495,9 +496,9 @@ if selected_date:
         fig, ax = plt.subplots(figsize=(16, 7))
         bars = ax.bar(total_orders.index, total_orders.values, width=0.4)
 
-        # Mengidentifikasi indeks kategori dengan penjualan tertinggi dan terendah
-        max_category = total_orders.idxmax()
-        min_category = total_orders.idxmin()
+        #Mengidentifikasi indeks kategori dengan penjualan tertinggi dan terendah
+        max_value = total_orders.max()
+        min_value = total_orders.min()
 
         ax.set_yticks([]) 
         ax.spines['top'].set_visible(False) 
@@ -506,10 +507,10 @@ if selected_date:
         ax.spines['left'].set_visible(False) 
 
         # Memberikan warna sesuai kriteria
-        for bar, category in zip(bars, total_orders.index):
-            if category == max_category:
+        for bar, total, category in zip(bars, total_orders.values, total_orders.index):
+            if total == max_value:
                 bar.set_color('green')  # Warna hijau untuk penjualan tertinggi
-            elif category == min_category:
+            elif total == min_value:
                 bar.set_color('red')  # Warna merah untuk penjualan terendah
             else:
                 bar.set_color('skyblue')  # Warna skyblue untuk yang lainnya
